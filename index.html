@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="manifest" href="manifest.json"/>
+    <link rel="stylesheet" href="style.css" />
+    <title>Sticky Notes</title>
+
+    <script>
+      function clicked() {
+        console.log("CLICKED");
+        // Save info into localStorage
+        let key = document.form.title.value;
+        let value = document.form.content.value;
+        localStorage.setItem(key, value);
+        //Create cookie with one month
+        let cookieExpiration = new Date();
+        cookieExpiration.setMonth(cookieExpiration.getMonth() + 1);
+        document.cookie = `username=sho; expires=${cookieExpiration.toUTCString()};`;
+      }
+
+      function dialogAction() {
+        // Alert: shows a dialog with a text
+        //alert("Texto")
+        // ======================
+        // Confirm
+        // Returns a boolean that is the confirmation
+        //const confirmationResponse = confirm("Are you sure?")
+        //===================
+        // Get input from user
+        // const inputResponse = prompt("Enter your name:", "defaultValue")
+        // document.write("Your name is: " + inputResponse)
+      }
+    </script>
+  </head>
+  <body>
+    <div id="header">
+      <h1>Stickit Notes</h1>
+      <p id="ts">By Lucas Rojas</p>
+    </div>
+
+    <div id="form">
+      <form id="inputForm">
+        <input
+          type="text"
+          name="title"
+          id="new-note-title-input"
+          class="inputText"
+          placeholder="Title"
+          autocomplete="off"
+          required
+          autofocus
+        />
+        <input
+          type="text"
+          name="content"
+          id="new-note-body-input"
+          class="inputText"
+          placeholder="Content"
+          autocomplete="off"
+          required
+        />
+        <button type="submit" class="btn">
+          Create Note
+        </button>
+      </form>
+
+      <h3 id="no-notes">No notes found, add one!</h3>
+      <ul id="notes">
+      </ul>
+    </div>
+    <script src="js/script.js"></script>
+  </body>
+</html>
